@@ -59,4 +59,21 @@ class AbstractAssertBuilderTest {
             assert that Any() describedAs "A labeled object" isInstance of<Unit>()
         } hasMessageContaining "A labeled object"
     }
+
+    @Test
+    fun `block assertions`() {
+        assert that Any() isSuchThat {
+            it _is notNull
+            it isInstance of<Any>()
+            it isNotEqualTo Unit
+            it isNotEqualTo Any()
+        }
+
+        assert thatExceptionIsThrownBy {
+            assert that Any() isSuchThat {
+                it _is null
+                it isInstance of<Unit>()
+            }
+        }
+    }
 }

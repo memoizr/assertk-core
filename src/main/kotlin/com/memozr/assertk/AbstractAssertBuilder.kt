@@ -47,4 +47,9 @@ class AbstractAssertBuilder<T : Any>(other: T?) {
         assertion.`as`(description)
         return this
     }
+
+    infix fun isSuchThat(assertionBlock: AbstractAssertBuilder<T>.(AbstractAssertBuilder<T>) -> Unit): AbstractAssertBuilder<T> {
+        assertionBlock(this)
+        return this
+    }
 }
