@@ -56,7 +56,7 @@ allprojects {
 }
 dependencies {
     ...
-    testCompile 'com.github.memoizr:assertk-core:0.0.1-Alpha'
+    testCompile 'com.github.memoizr:assertk-core:0.0.2-Alpha'
     ...
 }
 ```
