@@ -45,3 +45,18 @@ assert thatExceptionIsThrownBy {
     it hasMessageEndingWith "foo"
 }
 ```
+
+##Get it
+```
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+dependencies {
+    ...
+    testCompile 'com.github.memoizr:assertk-core:0.0.1-Alpha'
+    ...
+}
+```
