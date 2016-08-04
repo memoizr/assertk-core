@@ -5,7 +5,7 @@ val expect: AssertionHook get() = AssertionHook()
 
 class AssertionHook {
     infix fun <T : Any> that(subjectUnderTest: T?) = AbstractAssertBuilder(subjectUnderTest)
-    infix fun thatExceptionIsThrownBy(expressionUnderTest: () -> Unit) = ThrowableAssertionBuilder(expressionUnderTest)
+    infix fun thatThrownBy(expressionUnderTest: () -> Unit) = ThrowableAssertionBuilder(expressionUnderTest)
 }
 
 

@@ -3,65 +3,65 @@ package com.memozr.assertk
 import com.memozr.assertk.ObjectStuff.notNull
 import org.junit.Test
 
-class AbstractAssertBuilderTest {
+class `Abstract assert builder test` {
     val nullObject: Any? = null
 
     @Test
-    fun `isEqualTo`() {
+    fun `isEqualTo performs logical equality`() {
         assert that Unit isEqualTo Unit
 
-        assert thatExceptionIsThrownBy {
+        assert thatThrownBy {
             assert that Any() isEqualTo Any()
         }
     }
 
     @Test
-    fun `isNotEqualTo`() {
+    fun `isNotEqualTo peforms logical inequality`() {
         assert that Any() isNotEqualTo Any()
 
-        assert thatExceptionIsThrownBy {
+        assert thatThrownBy {
             assert that Unit isNotEqualTo Unit
         }
     }
 
     @Test
-    fun `is not null`() {
+    fun `_is notNull checks whether object is null`() {
         assert that Any() _is notNull
 
-        assert thatExceptionIsThrownBy {
+        assert thatThrownBy {
             assert that nullObject _is notNull
         }
     }
 
     @Test
-    fun `is null`() {
+    fun `_is null checks whether object is not null`() {
         assert that nullObject _is null
 
-        assert thatExceptionIsThrownBy {
+        assert thatThrownBy {
             assert that Any() _is null
         }
     }
 
     @Test
-    fun `is instance of`() {
+    fun `isInstance of checks for object instance`() {
         val anObject = Any()
 
         assert that anObject isInstance of<Any>()
 
-        assert thatExceptionIsThrownBy {
+        assert thatThrownBy {
             assert that anObject isInstance of<Unit>()
         }
     }
 
     @Test
-    fun `described as describes the object`() {
-        assert thatExceptionIsThrownBy {
+    fun `describedAs describes the object when referring to it in failure messages`() {
+        assert thatThrownBy {
             assert that Any() describedAs "A labeled object" isInstance of<Unit>()
         } hasMessageContaining "A labeled object"
     }
 
     @Test
-    fun `block assertions`() {
+    fun `block assertions are supported`() {
         assert that Any() isSuchThat {
             it _is notNull
             it isInstance of<Any>()
@@ -69,7 +69,7 @@ class AbstractAssertBuilderTest {
             it isNotEqualTo Any()
         }
 
-        assert thatExceptionIsThrownBy {
+        assert thatThrownBy {
             assert that Any() isSuchThat {
                 it _is null
                 it isInstance of<Unit>()
