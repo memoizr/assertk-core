@@ -10,47 +10,51 @@ enum class ObjectStuff {
 
 inline fun <reified R : Any> of() = AbstractAssertBuilder.InstanceMatcher<R>()
 
-open class AbstractAssertBuilder<T : Any>(other: T?) {
+abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any> internal constructor(actual: A?, selfType: Class<*>) {
     class InstanceMatcher<R>
 
-    open protected val assertion: AbstractAssert<*, out T?> = Assertions.assertThat(other)
+    @Suppress("UNCHECKED_CAST", "LeakingThis")
+    protected val myself: S = selfType.cast(this) as S
 
-    infix fun isEqualTo(other: T): AbstractAssertBuilder<T> {
+    open protected val assertion: AbstractAssert<*, out A?> = Assertions.assertThat(actual)
+
+    infix fun isEqualTo(other: A): S {
         assertion.isEqualTo(other)
-        return this
+        return myself
     }
 
-    infix fun isNotEqualTo(other: T): AbstractAssertBuilder<T> {
+    infix fun isNotEqualTo(other: A): S {
         assertion.isNotEqualTo(other)
-        return this
+        return myself
     }
 
     @Suppress("UNUSED_PARAMETER")
-    inline infix fun <reified R: Any> isInstance(bar: InstanceMatcher<R>) : AbstractAssertBuilder<T> {
+    inline infix fun <reified R : Any> isInstance(bar: InstanceMatcher<R>): S {
         assertion.isInstanceOf(R::class.java)
-        return this
+        return myself
     }
 
-    infix fun _is(objectStuff: ObjectStuff?): AbstractAssertBuilder<T> {
+    infix fun _is(objectStuff: ObjectStuff?): S {
         return when (objectStuff) {
             notNull -> {
                 assertion.isNotNull()
-                this
+                myself
             }
             else -> {
                 assertion.isNull()
-                this
+                myself
             }
         }
     }
 
-    infix fun  describedAs(description: String): AbstractAssertBuilder<T> {
+    infix fun describedAs(description: String): S {
         assertion.`as`(description)
-        return this
+        return myself
     }
 
-    infix fun isSuchThat(assertionBlock: AbstractAssertBuilder<T>.(AbstractAssertBuilder<T>) -> Unit): AbstractAssertBuilder<T> {
-        assertionBlock(this)
-        return this
+    @Suppress("UNCHECKED_CAST")
+    infix fun isSuchThat(assertionBlock: S.(S) -> Unit): S {
+        (this as S).assertionBlock(this)
+        return myself
     }
 }

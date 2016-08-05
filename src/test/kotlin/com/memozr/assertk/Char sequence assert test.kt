@@ -193,4 +193,12 @@ class `Char sequence assert test` {
         _expect that "foo bar" containsPattern pattern canBe chained
         verify(mockAssertion).containsPattern(pattern)
     }
+
+    @Test
+    fun `Block syntax is supported`() {
+        _expect that "foo" isSuchThat {
+            it contains "foo"
+            it isSubstringOf "fooBar"
+        }
+    }
 }

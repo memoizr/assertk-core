@@ -11,8 +11,8 @@ enum class CharSequenceAssertTest {
 
 class CharSequenceAssert internal constructor(
         private val subject: String?,
-        override protected val assertion: AbstractCharSequenceAssert<*, String> = assertThat(subject))
-: AbstractAssertBuilder<String>(subject) {
+        override val assertion: AbstractCharSequenceAssert<*, String> = assertThat(subject))
+: AbstractAssertBuilder<CharSequenceAssert, String>(subject, CharSequenceAssert::class.java) {
 
     object onlyDigits
 
