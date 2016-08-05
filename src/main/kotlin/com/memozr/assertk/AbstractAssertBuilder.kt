@@ -1,6 +1,7 @@
 package com.memozr.assertk
 
 import com.memozr.assertk.ObjectStuff.notNull
+import org.assertj.core.api.AbstractAssert
 import org.assertj.core.api.Assertions
 
 enum class ObjectStuff {
@@ -9,10 +10,10 @@ enum class ObjectStuff {
 
 inline fun <reified R : Any> of() = AbstractAssertBuilder.InstanceMatcher<R>()
 
-class AbstractAssertBuilder<T : Any>(other: T?) {
+open class AbstractAssertBuilder<T : Any>(other: T?) {
     class InstanceMatcher<R>
 
-    val assertion = Assertions.assertThat(other)
+    open protected val assertion: AbstractAssert<*, T?> = Assertions.assertThat(other)
 
     infix fun isEqualTo(other: T): AbstractAssertBuilder<T> {
         assertion.isEqualTo(other)
