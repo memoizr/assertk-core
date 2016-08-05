@@ -35,12 +35,12 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun isEqualToIgnoringCase(expected: String): CharSequenceAssert {
+    infix fun isEqualToIgnoringCase(expected: CharSequence): CharSequenceAssert {
         assertion.isEqualToIgnoringCase(expected)
         return this
     }
 
-    infix fun isNotEqualToIgnoringCase(expected: String): CharSequenceAssert {
+    infix fun isNotEqualToIgnoringCase(expected: CharSequence): CharSequenceAssert {
         assertion.isNotEqualToIgnoringCase(expected)
         return this
     }
@@ -55,7 +55,7 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun containsOnlyOnce(expected: String): CharSequenceAssert {
+    infix fun containsOnlyOnce(expected: CharSequence): CharSequenceAssert {
         assertion.containsOnlyOnce(expected)
         return this
     }
@@ -70,7 +70,7 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun containsIgnoringCase(expected: String): CharSequenceAssert {
+    infix fun containsIgnoringCase(expected: CharSequence): CharSequenceAssert {
         assertion.containsIgnoringCase(expected)
         return this
     }
@@ -80,7 +80,7 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun startsWith(expected: String): CharSequenceAssert {
+    infix fun startsWith(expected: CharSequence): CharSequenceAssert {
         assertion.startsWith(expected)
         return this
     }
@@ -100,7 +100,7 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun  matches(expected: Pattern): CharSequenceAssert {
+    infix fun matches(expected: Pattern): CharSequenceAssert {
         assertion.matches(expected)
         return this
     }
@@ -110,7 +110,7 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun  matches(expected: CharSequence): CharSequenceAssert {
+    infix fun matches(expected: CharSequence): CharSequenceAssert {
         assertion.matches(expected)
         return this
     }
@@ -135,7 +135,7 @@ class CharSequenceAssert internal constructor(
         return this
     }
 
-    infix fun containsPattern(pattern: String): CharSequenceAssert {
+    infix fun containsPattern(pattern: CharSequence): CharSequenceAssert {
         assertion.containsPattern(pattern)
         return this
     }

@@ -13,7 +13,7 @@ inline fun <reified R : Any> of() = AbstractAssertBuilder.InstanceMatcher<R>()
 open class AbstractAssertBuilder<T : Any>(other: T?) {
     class InstanceMatcher<R>
 
-    open protected val assertion: AbstractAssert<*, T?> = Assertions.assertThat(other)
+    open protected val assertion: AbstractAssert<*, out T?> = Assertions.assertThat(other)
 
     infix fun isEqualTo(other: T): AbstractAssertBuilder<T> {
         assertion.isEqualTo(other)
