@@ -9,10 +9,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import java.util.regex.Pattern
 
-class `Char sequence assert test` {
-    lateinit var mockAssertion: AbstractCharSequenceAssert<*, String>
+class `CharSequence assert test` {
+    lateinit var mockAssertion: AbstractCharSequenceAssert<*, out CharSequence>
     val _expect = object : AssertionHook {
-        override fun that(subjectUnderTest: String?): CharSequenceAssert {
+        override fun that(subjectUnderTest: CharSequence?): CharSequenceAssert {
             mockAssertion = spy(assertThat(subjectUnderTest))
             return CharSequenceAssert(subjectUnderTest, mockAssertion)
         }
