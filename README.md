@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/memoizr/assertk-core.svg?branch=master)](https://travis-ci.org/memoizr/assertk-core)
+[![](https://jitpack.io/v/memoizr/assertk-core.svg)](https://jitpack.io/#memoizr/assertk-core)
+
 # AssertK - Fluent assertions for Kotlin
 AssertK provides a Kotlin-friendly syntax for using the amazing AssertJ assertion framework.
 
