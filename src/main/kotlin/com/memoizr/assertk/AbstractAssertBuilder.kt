@@ -1,6 +1,6 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
-import com.memozr.assertk.ObjectStuff.notNull
+import com.memoizr.assertk.ObjectStuff.notNull
 import org.assertj.core.api.AbstractAssert
 import org.assertj.core.api.Assertions
 

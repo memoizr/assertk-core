@@ -1,7 +1,7 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
-import com.memozr.assertk.CharSequenceAssert.onlyDigits
-import com.memozr.assertk.CharSequenceAssertTest.*
+import com.memoizr.assertk.CharSequenceAssert.onlyDigits
+import com.memoizr.assertk.CharSequenceAssertTest.*
 import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import org.assertj.core.api.AbstractCharSequenceAssert

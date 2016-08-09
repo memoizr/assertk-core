@@ -1,6 +1,6 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
-import com.memozr.assertk.ThrowableAssertion.noCause
+import com.memoizr.assertk.ThrowableAssertion.noCause
 import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import org.assertj.core.api.AbstractThrowableAssert

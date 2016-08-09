@@ -1,4 +1,4 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
 val assert: AssertionHook get() = RealAssertionHook()
 val expect: AssertionHook get() = RealAssertionHook()

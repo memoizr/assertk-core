@@ -1,6 +1,6 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
-import com.memozr.assertk.CharSequenceAssertTest.*
+import com.memoizr.assertk.CharSequenceAssertTest.*
 import org.assertj.core.api.AbstractCharSequenceAssert
 import org.assertj.core.api.Assertions.assertThat
 import java.util.regex.Pattern

@@ -1,4 +1,4 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
 import org.assertj.core.api.AbstractThrowableAssert
 import org.assertj.core.api.Assertions

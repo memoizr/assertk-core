@@ -1,6 +1,6 @@
-package com.memozr.assertk
+package com.memoizr.assertk
 
-import com.memozr.assertk.ObjectStuff.notNull
+import com.memoizr.assertk.ObjectStuff.notNull
 import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import org.assertj.core.api.AbstractObjectAssert
