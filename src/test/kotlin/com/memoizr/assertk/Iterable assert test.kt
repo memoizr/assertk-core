@@ -7,11 +7,11 @@ import org.assertj.core.api.Assertions
 import org.junit.Test
 
 class `Iterable assert test` {
-    lateinit var mockAssertion: AbstractIterableAssert<*, Iterable<Any>, Any, *>
+    lateinit var mockAssertion: AbstractIterableAssert<*, in Iterable<Any>, in Any, *>
 
     @Suppress("CAST_NEVER_SUCCEEDS")
     val _expect = object : AssertionHook {
-        override fun <ELEMENT : Any> that(subjectUnderTest: Iterable<ELEMENT>?): IterableAssert<ELEMENT, Iterable<ELEMENT>> {
+        override fun <ELEMENT : Any?> that(subjectUnderTest: Iterable<ELEMENT>?): IterableAssert<ELEMENT, Iterable<ELEMENT>> {
             val spy = spy(Assertions.assertThat(subjectUnderTest))
             mockAssertion = spy as AbstractIterableAssert<*, Iterable<Any>, Any, *>
             return IterableAssert(subjectUnderTest, mockAssertion as AbstractIterableAssert<*, Iterable<ELEMENT>, ELEMENT, *>)
@@ -21,15 +21,17 @@ class `Iterable assert test` {
     val chained = Any()
     infix fun <ELEMENT : Any, ACTUAL : Iterable<ELEMENT>> IterableAssert<ELEMENT, ACTUAL>.canBe(dummyValue: Any): IterableAssert<ELEMENT, ACTUAL> = this
 
+    val emptyList = emptyList<Any>()
+
     @Test
     fun isEmpty() {
-        _expect that emptyList<Any>() _is empty canBe chained
+        _expect that emptyList _is empty canBe chained
         verify(mockAssertion).isEmpty()
     }
 
     @Test
     fun isNullOrEmpty() {
-        _expect that emptyList() _is nullOrEmpty canBe chained
+        _expect that emptyList _is nullOrEmpty canBe chained
         verify(mockAssertion).isNullOrEmpty()
     }
 

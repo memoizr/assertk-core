@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractIterableAssert
 import org.assertj.core.api.Assertions.assertThat
 
-class IterableAssert<ELEMENT : Any, ACTUAL : Iterable<ELEMENT>>(
+class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>>(
         subjectUnderTest: ACTUAL?,
         override val assertion: AbstractIterableAssert<*, Iterable<ELEMENT>, ELEMENT, *> = assertThat(subjectUnderTest))// {
 : AbstractAssertBuilder<IterableAssert<ELEMENT, ACTUAL>, Iterable<ELEMENT>>(subjectUnderTest, IterableAssert::class.java) {
@@ -19,7 +19,7 @@ class IterableAssert<ELEMENT : Any, ACTUAL : Iterable<ELEMENT>>(
         return this
     }
 
-    private fun arrayOfAnys(expected: Iterable<ELEMENT>): Array<ELEMENT> = expected.toList().toTypedArray<Any>() as Array<ELEMENT>
+    private fun <T> arrayOfAnys(expected: Iterable<T>): Array<T> = expected.toList().toTypedArray<Any?>() as Array<T>
 
     infix fun hasSize(size: Int): SELF {
         assertion.hasSize(size)
