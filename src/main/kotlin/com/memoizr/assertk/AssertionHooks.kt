@@ -7,6 +7,7 @@ interface AssertionHook {
     infix fun <T : Any> that(subjectUnderTest: T?) = ObjectAssert(subjectUnderTest)
     infix fun that(subjectUnderTest: CharSequence?) = CharSequenceAssert(subjectUnderTest)
     infix fun thatThrownBy(expressionUnderTest: () -> Unit) = ThrowableAssertion(expressionUnderTest)
+    infix fun <ELEMENT: Any> that(subjectUnderTest: Iterable<ELEMENT>?): IterableAssert<ELEMENT, Iterable<ELEMENT>> = IterableAssert(subjectUnderTest)
 }
 
 class RealAssertionHook : AssertionHook

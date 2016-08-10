@@ -1,7 +1,5 @@
 package com.memoizr.assertk
 
-import com.memoizr.assertk.CharSequenceAssert.onlyDigits
-import com.memoizr.assertk.CharSequenceAssertTest.*
 import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import org.assertj.core.api.AbstractCharSequenceAssert
@@ -17,6 +15,7 @@ class `CharSequence assert test` {
             return CharSequenceAssert(subjectUnderTest, mockAssertion)
         }
     }
+
     val chained = ""
     infix fun CharSequenceAssert.canBe(dummyValue: CharSequence) : CharSequenceAssert = this
 

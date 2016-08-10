@@ -1,22 +1,16 @@
 package com.memoizr.assertk
 
-import com.memoizr.assertk.CharSequenceAssertTest.*
 import org.assertj.core.api.AbstractCharSequenceAssert
 import org.assertj.core.api.Assertions.assertThat
 import java.util.regex.Pattern
-
-enum class CharSequenceAssertTest {
-    nullOrEmpty, empty, notEmpty
-}
 
 class CharSequenceAssert internal constructor(
         private val subject: CharSequence?,
         override val assertion: AbstractCharSequenceAssert<*, out CharSequence> = assertThat(subject)) :
         AbstractAssertBuilder<CharSequenceAssert, CharSequence>(subject, CharSequenceAssert::class.java) {
 
-    object onlyDigits
 
-    infix fun _is(assertionTest: CharSequenceAssertTest): CharSequenceAssert {
+    infix fun _is(assertionTest: SequenceSelector): CharSequenceAssert {
         when (assertionTest) {
             empty -> assertion.isEmpty()
             notEmpty -> assertion.isNotEmpty()

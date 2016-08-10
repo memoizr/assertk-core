@@ -17,7 +17,7 @@ class ThrowableAssertion(
         return this
     }
 
-    infix fun has(noCause: noCause): ThrowableAssertion {
+    infix fun has(noCause: CauseSelector): ThrowableAssertion {
         assertion.hasNoCause()
         return this
     }
@@ -51,5 +51,4 @@ class ThrowableAssertion(
         assertions(this)
     }
 
-    object noCause
 }
