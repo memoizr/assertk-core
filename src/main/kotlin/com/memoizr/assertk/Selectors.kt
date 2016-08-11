@@ -12,3 +12,7 @@ object notNull: ObjectSelector()
 
 sealed class CauseSelector
 object noCause: CauseSelector()
+
+object duplicates
+
+object onlyNotNull

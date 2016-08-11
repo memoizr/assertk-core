@@ -95,4 +95,52 @@ class `Iterable assert test` {
         _expect that listOf(1, 2, 3, 4) containsSubsequence listOf(2, 4) canBe chained
         verify(mockAssertion).containsSubsequence(2, 4)
     }
+
+    @Test
+    fun doesNotContainAnyElementsOf() {
+        _expect that listOf(1, 2, 3, 4) doesNotContainAnyElementsOf listOf(6, 7) canBe chained
+        verify(mockAssertion).doesNotContainAnyElementsOf(listOf(6,7))
+    }
+
+    @Test
+    fun doesNotHaveDuplicates() {
+        _expect that listOf(1, 2, 3, 4) doesNotHave duplicates canBe chained
+        verify(mockAssertion).doesNotHaveDuplicates()
+    }
+
+    @Test
+    fun `startsWith list`() {
+        _expect that listOf(1, 2, 3, 4) startsWith listOf(1, 2) canBe chained
+        verify(mockAssertion).startsWith(1, 2)
+    }
+
+    @Test
+    fun `startsWith single`() {
+        _expect that listOf(1, 2, 3, 4) startsWith 1 canBe chained
+        verify(mockAssertion).startsWith(1)
+    }
+
+    @Test
+    fun `endsWith list`() {
+        _expect that listOf(1, 2, 3, 4) endsWith listOf(3, 4) canBe chained
+        verify(mockAssertion).endsWith(3, 4)
+    }
+
+    @Test
+    fun `endsWith single`() {
+        _expect that listOf(1, 2, 3, 4) endsWith 4 canBe chained
+        verify(mockAssertion).endsWith(4)
+    }
+
+    @Test
+    fun containsNull() {
+        _expect that listOf(1, 2, 3, 4, null) contains null canBe chained
+        verify(mockAssertion).containsNull()
+    }
+
+    @Test
+    fun containsOnlyNotNull() {
+        _expect that listOf(1, 2, 3, 4) contains onlyNotNull canBe chained
+        verify(mockAssertion).doesNotContainNull()
+    }
 }

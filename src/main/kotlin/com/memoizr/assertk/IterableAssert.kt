@@ -19,6 +19,7 @@ class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>>(
         return this
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <T> spread(expected: Iterable<T>): Array<T> = expected.toList().toTypedArray<Any?>() as Array<T>
 
     infix fun hasSize(size: Int): SELF {
@@ -63,6 +64,41 @@ class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>>(
 
     infix fun containsSubsequence(expected: ACTUAL): SELF {
         assertion.containsSubsequence(*spread(expected))
+        return myself
+    }
+
+    infix fun doesNotContainAnyElementsOf(expected: ACTUAL): SELF {
+        assertion.doesNotContainAnyElementsOf(expected)
+        return myself
+    }
+
+    infix fun doesNotHave(duplicates: duplicates): SELF {
+        assertion.doesNotHaveDuplicates()
+        return myself
+    }
+
+    infix fun startsWith(expected: ACTUAL): SELF {
+        assertion.startsWith(*spread(expected))
+        return myself
+    }
+
+    infix fun startsWith(firstElement: ELEMENT): SELF {
+        assertion.startsWith(firstElement)
+        return myself
+    }
+
+    infix fun endsWith(expected: ACTUAL): SELF {
+        assertion.endsWith(*spread(expected))
+        return myself
+    }
+
+    infix fun endsWith(firstElement: ELEMENT): SELF {
+        assertion.endsWith(firstElement)
+        return myself
+    }
+
+    infix fun contains(onlyNotNull: onlyNotNull?): SELF {
+        if (onlyNotNull == null) assertion.containsNull() else assertion.doesNotContainNull()
         return myself
     }
 }
