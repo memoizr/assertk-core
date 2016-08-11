@@ -1,32 +1,31 @@
 package com.memoizr.assertk
 
 import com.nhaarman.mockito_kotlin.spy
-import com.nhaarman.mockito_kotlin.verify
-import org.assertj.core.api.AbstractIntegerAssert
+import org.assertj.core.api.AbstractDoubleAssert
 import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.within
 import org.junit.Test
+import org.mockito.Mockito
 
-class `Integer assert test` {
-    lateinit var mockAssertion: AbstractIntegerAssert<*>
+class `Double assert test` {
+    lateinit var mockAssertion: AbstractDoubleAssert<*>
     @Suppress("UNCHECKED_CAST")
     val _expect = object : AssertionHook {
-        override fun that(subjectUnderTest: Int?): IntegerAssert {
-            val spy: AbstractIntegerAssert<*> = spy(Assertions.assertThat(subjectUnderTest))
+        override fun that(subjectUnderTest: Double?): DoubleAssert {
+            val spy: AbstractDoubleAssert<*> = spy(Assertions.assertThat(subjectUnderTest))
             mockAssertion = spy
-            return IntegerAssert(subjectUnderTest, mockAssertion)
+            return DoubleAssert(subjectUnderTest, mockAssertion)
         }
     }
 
     val chained = Any()
-    infix fun IntegerAssert.andCanBe(chained: Any) = this
+    infix fun DoubleAssert.andCanBe(chained: Any) = this
 
-    private val verify by lazy { verify(mockAssertion) }
+    private val verify by lazy { Mockito.verify(mockAssertion) }
 
-    private val four = 4
-    private val three = 3
-    private val five = 5
-    private val one = 1
+    private val four = 4.0
+    private val three = 3.0
+    private val five = 5.0
+    private val one = 1.0
     private val negativeOne = -one
 
     @Test
@@ -56,19 +55,19 @@ class `Integer assert test` {
     @Test
     fun isBetween() {
         _expect that four isBetween (three..five) andCanBe chained
-        verify.isBetween(three,five)
+        verify.isBetween(three, five)
     }
 
     @Test
     fun isStrictlyBetween() {
         _expect that four isStrictlyBetween (three..five) andCanBe chained
-        verify.isStrictlyBetween(three,five)
+        verify.isStrictlyBetween(three, five)
     }
 
     @Test
     fun `isCloseTo within`() {
         _expect that four isCloseTo three withinOffset one andCanBe chained
-        verify.isCloseTo(three, within(one))
+        verify.isCloseTo(three, Assertions.within(one))
     }
 
     @Test
@@ -91,8 +90,7 @@ class `Integer assert test` {
 
     @Test
     fun isZero() {
-        val tzero = 0
-        _expect that tzero _is zero andCanBe chained
+        _expect that 0.0 _is zero andCanBe chained
         verify.isZero()
     }
 
@@ -136,3 +134,4 @@ class `Integer assert test` {
         }
     }
 }
+

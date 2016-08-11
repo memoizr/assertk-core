@@ -1,32 +1,30 @@
 package com.memoizr.assertk
 
 import com.nhaarman.mockito_kotlin.spy
-import com.nhaarman.mockito_kotlin.verify
-import org.assertj.core.api.AbstractIntegerAssert
+import org.assertj.core.api.AbstractFloatAssert
 import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.within
 import org.junit.Test
+import org.mockito.Mockito
 
-class `Integer assert test` {
-    lateinit var mockAssertion: AbstractIntegerAssert<*>
+class `Float assert test` {
+    lateinit var mockAssertion: AbstractFloatAssert<*>
     @Suppress("UNCHECKED_CAST")
     val _expect = object : AssertionHook {
-        override fun that(subjectUnderTest: Int?): IntegerAssert {
-            val spy: AbstractIntegerAssert<*> = spy(Assertions.assertThat(subjectUnderTest))
+        override fun that(subjectUnderTest: Float?): FloatAssert {
+            val spy: AbstractFloatAssert<*> = spy(Assertions.assertThat(subjectUnderTest))
             mockAssertion = spy
-            return IntegerAssert(subjectUnderTest, mockAssertion)
+            return FloatAssert(subjectUnderTest, mockAssertion)
         }
     }
 
     val chained = Any()
-    infix fun IntegerAssert.andCanBe(chained: Any) = this
+    infix fun FloatAssert.andCanBe(chained: Any) = this
 
-    private val verify by lazy { verify(mockAssertion) }
-
-    private val four = 4
-    private val three = 3
-    private val five = 5
-    private val one = 1
+    private val verify by lazy { Mockito.verify(mockAssertion) }
+    private val four = 4f
+    private val three = 3f
+    private val five = 5f
+    private val one = 1f
     private val negativeOne = -one
 
     @Test
@@ -68,31 +66,18 @@ class `Integer assert test` {
     @Test
     fun `isCloseTo within`() {
         _expect that four isCloseTo three withinOffset one andCanBe chained
-        verify.isCloseTo(three, within(one))
+        verify.isCloseTo(three, Assertions.within(one))
     }
 
     @Test
-    fun `isCloseTo percentage int`() {
-        _expect that three isCloseTo four withinPercentage 25 andCanBe chained
-        verify.isCloseTo(four, Assertions.withinPercentage(25))
-    }
-
-    @Test
-    fun `isCloseTo percentage double`() {
-        _expect that three isCloseTo four withinPercentage 25.3 andCanBe chained
-        verify.isCloseTo(four, Assertions.withinPercentage(25.3))
-    }
-
-    @Test
-    fun `isCloseTo percentage float`() {
-        _expect that three isCloseTo four withinPercentage 25f andCanBe chained
+    fun `isCloseTo percentage`() {
+        _expect that three isCloseTo four withinPercentage 25.0 andCanBe chained
         verify.isCloseTo(four, Assertions.withinPercentage(25))
     }
 
     @Test
     fun isZero() {
-        val tzero = 0
-        _expect that tzero _is zero andCanBe chained
+        _expect that 0f _is zero andCanBe chained
         verify.isZero()
     }
 

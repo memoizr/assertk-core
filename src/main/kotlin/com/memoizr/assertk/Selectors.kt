@@ -17,10 +17,11 @@ object duplicates
 
 object onlyNotNull
 
-sealed class IntegerSelector
-object zero : IntegerSelector()
-object notZero : IntegerSelector()
-object positive : IntegerSelector()
-object notPositive : IntegerSelector()
-object negative : IntegerSelector()
-object notNegative : IntegerSelector()
+sealed class NumberSelector
+object zero : NumberSelector()
+object notZero : NumberSelector()
+object positive : NumberSelector()
+object notPositive : NumberSelector()
+object negative : NumberSelector()
+object notNegative : NumberSelector()
+
