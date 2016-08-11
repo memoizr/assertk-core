@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractLongAssert
 import org.assertj.core.api.Assertions
 
-class LongAssert(
+class LongAssert internal constructor(
         subjectUnderTest: Long?,
         override val assertion: AbstractLongAssert<*> = Assertions.assertThat(subjectUnderTest)) :
         AbstractAssertBuilder<LongAssert, Long>(subjectUnderTest, LongAssert::class.java) {

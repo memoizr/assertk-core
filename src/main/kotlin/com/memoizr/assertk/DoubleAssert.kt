@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractDoubleAssert
 import org.assertj.core.api.Assertions
 
-class DoubleAssert(
+class DoubleAssert internal constructor(
         subjectUnderTest: Double?,
         override val assertion: AbstractDoubleAssert<*> = Assertions.assertThat(subjectUnderTest)) :
         AbstractAssertBuilder<DoubleAssert, Double>(subjectUnderTest, DoubleAssert::class.java) {

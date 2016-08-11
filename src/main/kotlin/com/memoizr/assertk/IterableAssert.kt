@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractIterableAssert
 import org.assertj.core.api.Assertions.assertThat
 
-class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>>(
+class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> internal constructor(
         subjectUnderTest: ACTUAL?,
         override val assertion: AbstractIterableAssert<*, Iterable<ELEMENT>, ELEMENT, *> = assertThat(subjectUnderTest))// {
 : AbstractAssertBuilder<IterableAssert<ELEMENT, ACTUAL>, Iterable<ELEMENT>>(subjectUnderTest, IterableAssert::class.java) {

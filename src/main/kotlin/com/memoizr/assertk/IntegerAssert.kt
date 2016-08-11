@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractIntegerAssert
 import org.assertj.core.api.Assertions
 
-class IntegerAssert(
+class IntegerAssert internal constructor(
         subjectUnderTest: Int?,
         override val assertion: AbstractIntegerAssert<*> = Assertions.assertThat(subjectUnderTest)) :
         AbstractAssertBuilder<IntegerAssert, Int>(subjectUnderTest, IntegerAssert::class.java) {

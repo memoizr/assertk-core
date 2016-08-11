@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractFloatAssert
 import org.assertj.core.api.Assertions
 
-class FloatAssert(
+class FloatAssert internal constructor(
         subjectUnderTest: Float?,
         override val assertion: AbstractFloatAssert<*> = Assertions.assertThat(subjectUnderTest)) :
         AbstractAssertBuilder<FloatAssert, Float>(subjectUnderTest, FloatAssert::class.java) {
