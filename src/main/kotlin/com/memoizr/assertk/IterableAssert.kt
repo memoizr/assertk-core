@@ -19,7 +19,7 @@ class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>>(
         return this
     }
 
-    private fun <T> arrayOfAnys(expected: Iterable<T>): Array<T> = expected.toList().toTypedArray<Any?>() as Array<T>
+    private fun <T> spread(expected: Iterable<T>): Array<T> = expected.toList().toTypedArray<Any?>() as Array<T>
 
     infix fun hasSize(size: Int): SELF {
         assertion.hasSize(size)
@@ -32,27 +32,37 @@ class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>>(
     }
 
     infix fun contains(expected: ACTUAL): SELF {
-        assertion.contains(*arrayOfAnys(expected))
+        assertion.contains(*spread(expected))
         return myself
     }
 
     infix fun containsOnly(expected: ACTUAL): SELF {
-        assertion.containsOnly(*arrayOfAnys(expected))
+        assertion.containsOnly(*spread(expected))
         return myself
     }
 
     infix fun containsOnlyOnce(expected: ACTUAL): SELF {
-        assertion.containsOnlyOnce(*arrayOfAnys(expected))
+        assertion.containsOnlyOnce(*spread(expected))
         return myself
     }
 
     infix fun containsExactlyInAnyOrder(expected: ACTUAL): SELF {
-        assertion.containsExactlyInAnyOrder(*arrayOfAnys(expected))
+        assertion.containsExactlyInAnyOrder(*spread(expected))
         return myself
     }
 
-    infix fun isSubsetOf(expected: Iterable<ELEMENT>): SELF {
-        assertion.isSubsetOf(*arrayOfAnys(expected))
+    infix fun isSubsetOf(expected: ACTUAL): SELF {
+        assertion.isSubsetOf(*spread(expected))
+        return myself
+    }
+
+    infix fun containsSequence(expected: ACTUAL): SELF {
+        assertion.containsSequence(*spread(expected))
+        return myself
+    }
+
+    infix fun containsSubsequence(expected: ACTUAL): SELF {
+        assertion.containsSubsequence(*spread(expected))
         return myself
     }
 }

@@ -18,8 +18,9 @@ class `Iterable assert test` {
         }
     }
 
+    typealias IA<ELEMENT> = IterableAssert<ELEMENT, Iterable<ELEMENT>>
+    infix fun <T> IA<T>.canBe(dummyValue: Any): IA<T> = this
     val chained = Any()
-    infix fun <ELEMENT : Any, ACTUAL : Iterable<ELEMENT>> IterableAssert<ELEMENT, ACTUAL>.canBe(dummyValue: Any): IterableAssert<ELEMENT, ACTUAL> = this
 
     val emptyList = emptyList<Any>()
 
@@ -79,8 +80,19 @@ class `Iterable assert test` {
 
     @Test
     fun isSubsetOf() {
-        _expect that listOf(1, 2) isSubsetOf listOf(2, 1, 3) //canBe chained
+        _expect that listOf(1, 2) isSubsetOf listOf(2, 1, 3) canBe chained
         verify(mockAssertion).isSubsetOf(2, 1, 3)
     }
-}
 
+    @Test
+    fun containsSequence() {
+        _expect that listOf(1, 2, 3, 4) containsSequence listOf(2, 3) canBe chained
+        verify(mockAssertion).containsSequence(2, 3)
+    }
+
+    @Test
+    fun containsSubsequence() {
+        _expect that listOf(1, 2, 3, 4) containsSubsequence listOf(2, 4) canBe chained
+        verify(mockAssertion).containsSubsequence(2, 4)
+    }
+}
