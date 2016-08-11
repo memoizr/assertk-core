@@ -99,7 +99,7 @@ class `Iterable assert test` {
     @Test
     fun doesNotContainAnyElementsOf() {
         _expect that listOf(1, 2, 3, 4) doesNotContainAnyElementsOf listOf(6, 7) canBe chained
-        verify(mockAssertion).doesNotContainAnyElementsOf(listOf(6,7))
+        verify(mockAssertion).doesNotContainAnyElementsOf(listOf(6, 7))
     }
 
     @Test
@@ -142,5 +142,18 @@ class `Iterable assert test` {
     fun containsOnlyNotNull() {
         _expect that listOf(1, 2, 3, 4) contains onlyNotNull canBe chained
         verify(mockAssertion).doesNotContainNull()
+    }
+
+    @Test
+    fun `block syntax is supported`() {
+        _expect that listOf(1, 2, 3, 4) isSuchThat {
+            it contains onlyNotNull
+            it endsWith 4
+            it endsWith listOf(3, 4)
+            it startsWith 1
+            it startsWith listOf(1, 2)
+            it doesNotHave duplicates
+            it doesNotContainAnyElementsOf listOf(5, 6)
+        }
     }
 }
