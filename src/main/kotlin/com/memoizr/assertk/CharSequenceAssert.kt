@@ -9,7 +9,6 @@ class CharSequenceAssert internal constructor(
         override val assertion: AbstractCharSequenceAssert<*, out CharSequence> = assertThat(subject)) :
         AbstractAssertBuilder<CharSequenceAssert, CharSequence>(subject, CharSequenceAssert::class.java) {
 
-
     infix fun _is(assertionTest: SequenceSelector): CharSequenceAssert {
         when (assertionTest) {
             empty -> assertion.isEmpty()

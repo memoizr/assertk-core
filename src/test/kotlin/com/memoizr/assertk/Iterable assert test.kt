@@ -155,5 +155,15 @@ class `Iterable assert test` {
             it doesNotHave duplicates
             it doesNotContainAnyElementsOf listOf(5, 6)
         }
+
+        assert that listOf(1, 2, 3, 4) isSuchThat {
+            it contains onlyNotNull
+            it endsWith 4
+            it endsWith listOf(3, 4)
+            it startsWith 1
+            it startsWith listOf(1, 2)
+            it doesNotHave duplicates
+            it doesNotContainAnyElementsOf listOf(5, 6)
+        }
     }
 }

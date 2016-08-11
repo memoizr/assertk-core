@@ -132,6 +132,13 @@ class `Long assert test` {
             it _is notNegative
             it isBetween (negativeOne..three)
         }
+
+        assert that one isSuchThat {
+            it _is positive
+            it _is notNegative
+            it isBetween (negativeOne..three)
+            it isInstance of<Long>()
+        }
     }
 }
 

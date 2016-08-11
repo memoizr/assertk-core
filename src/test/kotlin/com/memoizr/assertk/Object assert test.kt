@@ -93,6 +93,13 @@ class `Object assert test` {
             it isNotEqualTo Any()
         }
 
+        assert that Any() isSuchThat {
+            it _is notNull
+            it isInstance of<Any>()
+            it isNotEqualTo Unit
+            it isNotEqualTo Any()
+        }
+
         _expect thatThrownBy {
             _expect that Any() isSuchThat {
                 it _is null

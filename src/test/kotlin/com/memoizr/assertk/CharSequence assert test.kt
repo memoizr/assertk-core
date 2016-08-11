@@ -199,5 +199,10 @@ class `CharSequence assert test` {
             it contains "foo"
             it isSubstringOf "fooBar"
         }
+
+        expect that "foo" isSuchThat {
+            it contains "foo"
+            it isSubstringOf "fooBar"
+        }
     }
 }

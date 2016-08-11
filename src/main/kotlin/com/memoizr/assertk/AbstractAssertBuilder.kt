@@ -3,8 +3,6 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractAssert
 import org.assertj.core.api.Assertions
 
-inline fun <reified R : Any> of() = AbstractAssertBuilder.InstanceMatcher<R>()
-
 abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any> internal constructor(actual: A?, selfType: Class<*>) {
     class InstanceMatcher<R>
 

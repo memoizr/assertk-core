@@ -25,3 +25,5 @@ object notPositive : NumberSelector()
 object negative : NumberSelector()
 object notNegative : NumberSelector()
 
+inline fun <reified R : Any> of() = AbstractAssertBuilder.InstanceMatcher<R>()
+
