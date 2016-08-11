@@ -1,5 +1,6 @@
 package com.memoizr.assertk
 
+
 val assert: AssertionHook get() = RealAssertionHook()
 val expect: AssertionHook get() = RealAssertionHook()
 
@@ -8,6 +9,7 @@ interface AssertionHook {
     infix fun that(subjectUnderTest: CharSequence?) = CharSequenceAssert(subjectUnderTest)
     infix fun thatThrownBy(expressionUnderTest: () -> Unit) = ThrowableAssertion(expressionUnderTest)
     infix fun <ELEMENT: Any?> that(subjectUnderTest: Iterable<ELEMENT>?): IterableAssert<ELEMENT, Iterable<ELEMENT>> = IterableAssert(subjectUnderTest)
+    infix fun that(subjectUnderTest: Int?) = IntegerAssert(subjectUnderTest)
 }
 
 class RealAssertionHook : AssertionHook

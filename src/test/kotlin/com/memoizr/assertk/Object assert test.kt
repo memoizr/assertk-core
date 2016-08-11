@@ -10,6 +10,7 @@ class `Object assert test` {
     val nullObject: Any? = null
 
     lateinit var mockAssertion: AbstractObjectAssert<*, Any>
+    @Suppress("UNCHECKED_CAST")
     val _expect = object : AssertionHook {
         override fun <A: Any> that(subjectUnderTest: A?): ObjectAssert<A> {
             val spy: AbstractObjectAssert<*, A?>? = spy(Assertions.assertThat(subjectUnderTest))
