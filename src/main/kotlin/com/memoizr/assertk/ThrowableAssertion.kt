@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractThrowableAssert
 import org.assertj.core.api.Assertions
 
-class ThrowableAssertion(
+class ThrowableAssertion internal constructor(
         func: () -> Unit,
         private val assertion: AbstractThrowableAssert<*, out Throwable> = Assertions.assertThatThrownBy(func)) {
 
@@ -17,7 +17,7 @@ class ThrowableAssertion(
         return this
     }
 
-    infix fun has(noCause: noCause): ThrowableAssertion {
+    infix fun has(noCause: CauseSelector): ThrowableAssertion {
         assertion.hasNoCause()
         return this
     }
@@ -51,5 +51,4 @@ class ThrowableAssertion(
         assertions(this)
     }
 
-    object noCause
 }

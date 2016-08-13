@@ -1,16 +1,9 @@
 package com.memoizr.assertk
 
-import com.memoizr.assertk.ObjectStuff.notNull
 import org.assertj.core.api.AbstractAssert
 import org.assertj.core.api.Assertions
 
-enum class ObjectStuff {
-    notNull
-}
-
-inline fun <reified R : Any> of() = AbstractAssertBuilder.InstanceMatcher<R>()
-
-abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any> internal constructor(actual: A?, selfType: Class<*>) {
+abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any>(actual: A?, selfType: Class<*>) {
     class InstanceMatcher<R>
 
     @Suppress("UNCHECKED_CAST", "LeakingThis")
@@ -34,13 +27,13 @@ abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any> i
         return myself
     }
 
-    infix fun _is(objectStuff: ObjectStuff?): S {
-        return when (objectStuff) {
+    infix fun _is(objectSelector: ObjectSelector?): S {
+        return when (objectSelector) {
             notNull -> {
                 assertion.isNotNull()
                 myself
             }
-            else -> {
+            null -> {
                 assertion.isNull()
                 myself
             }
