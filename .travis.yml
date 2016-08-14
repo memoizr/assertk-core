@@ -2,4 +2,5 @@ language: java
 jdk:
   - oraclejdk8
 after_success:
-  - ./gradlew cobertura coveralls
+  - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
+  - bash <(curl -s https://codecov.io/bash) -t 7a683107-98e4-4c0d-b154-649e9ac9693c
