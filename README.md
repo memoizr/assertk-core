@@ -4,26 +4,28 @@
 # AssertK - Fluent assertions for Kotlin
 AssertK provides a Kotlin-friendly syntax for using the amazing AssertJ assertion framework.
 
-This is early stages work and the library is not yet complete. Only a small subset of the AssertJ-core features are already implemented, but those that are, should be ready to be used in your projects. Contributions are welcome with regards to adding functionality to match that of AssertJ.
-
 ###Simple assertions
 ```kotlin
 assert that Unit isEqualTo Unit
-assert that Any() isNotEqualTo Any()
-assert that Any() _is notNull
-assert that nullObject _is null
-assert that anObject isInstance of<Any>()
-assert that Any() describedAs "A labeled object" isInstance of<Unit>()
+```
+
+you can use `assert that` or `expect that` interchangeably as `assert` tends to be a bit noisy given when relying on autocomplete.
+```kotlin
+expect that Any() isNotEqualTo Any()
+expect that Any() _is notNull
+expect that nullObject _is null
+expect that anObject isInstance of<Any>()
+expect that Any() describedAs "A labeled object" isInstance of<Unit>()
 ```
 
 ###Chained syntax
 ```kotlin
-assert that Unit isNotEqualTo Any() isEqualTo Unit _is notNull isInstance of<Any>()
+expect that Unit isNotEqualTo Any() isEqualTo Unit _is notNull isInstance of<Any>()
 ```
 
 ###Block syntax
 ```kotlin
-assert that Any() isSuchThat {
+expect that Any() isSuchThat {
     it _is notNull
     it isInstance of<Any>()
     it isNotEqualTo Unit
@@ -34,12 +36,12 @@ assert that Any() isSuchThat {
 ##Assertions on exceptions
 ###Chained syntax
 ```kotlin
-assert thatExceptionIsThrownBy { failFunction() } hasMessageContaining "foo" hasCause Throwable()
+expect thatExceptionIsThrownBy { failFunction() } hasMessageContaining "foo" hasCause Throwable()
 ```
 
 ###Block syntax
 ```kotlin
-assert thatExceptionIsThrownBy {
+expect thatExceptionIsThrownBy {
     throw Throwable("exception foo", Throwable())
 } and {
     it hasMessage "exception foo"
@@ -51,6 +53,20 @@ assert thatExceptionIsThrownBy {
 }
 ```
 
+#Further Examples
+##Iterable Assert
+```kotlin
+expect that myListOfInts hasSize 10 contains 3 startsWith 1
+```
+##Boolean Assert
+```kotlin
+expect that myBoolean _is false
+```
+##Float, Double, Int, Long Assert
+```kotlin
+expect that myFloat isGreaterThan otherFloat
+expect that myInt _is notPositive isLessThan expectedResult
+```
 ##Get it
 ```groovy
 allprojects {
@@ -61,7 +77,7 @@ allprojects {
 }
 dependencies {
     ...
-    testCompile 'com.github.memoizr:assertk-core:0.0.2-Alpha'
+    testCompile 'com.github.memoizr:assertk-core:0.1.0'
     ...
 }
 ```
