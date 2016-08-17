@@ -11,22 +11,21 @@ buildscript {
     }
 }
 
-plugins {
-    id 'net.saliman.cobertura' version '2.3.1'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
-}
-
-cobertura.coverageFormats = ['html', 'xml']
-cobertura.coverageSourceDirs = ['src/main/kotlin']
-cobertura.coverageSourceDirs = ['src/test/kotlin']
 group 'com.memoizr'
 version '0.1'
 
 apply plugin: 'kotlin'
+apply plugin: 'jacoco'
 
 repositories {
     maven { url "https://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     jcenter()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
 }
 
 dependencies {

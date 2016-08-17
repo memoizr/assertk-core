@@ -13,6 +13,7 @@ interface AssertionHook {
     infix fun that(subjectUnderTest: Float?) = FloatAssert(subjectUnderTest)
     infix fun that(subjectUnderTest: Double?) = DoubleAssert(subjectUnderTest)
     infix fun that(subjectUnderTest: Long?) = LongAssert(subjectUnderTest)
+    infix fun that(subjectUnderTest: Boolean?) = BooleanAssert(subjectUnderTest)
 }
 
 class RealAssertionHook : AssertionHook
