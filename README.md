@@ -8,7 +8,7 @@ AssertK provides a Kotlin-friendly syntax for using the amazing AssertJ assertio
 assert that Unit isEqualTo Unit
 ```
 
-you can use `assert that` or `expect that` interchangeably as `assert` tends to be a bit noisy given when relying on autocomplete.
+you can use `assert that` or `expect that` interchangeably as `assert` tends to be a bit noisy when trying to autocomplete the statement.
 ```kotlin
 expect that Any() isNotEqualTo Any()
 expect that Any() _is notNull
