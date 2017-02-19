@@ -18,8 +18,7 @@ class `Iterable assert test` {
         }
     }
 
-    typealias IA<ELEMENT> = IterableAssert<ELEMENT, Iterable<ELEMENT>>
-    infix fun <T> IA<T>.canBe(dummyValue: Any): IA<T> = this
+    infix fun <T> IterableAssert<T, Iterable<T>>.canBe(dummyValue: Any): IterableAssert<T, Iterable<T>> = this
     val chained = Any()
 
     val emptyList = emptyList<Any>()
