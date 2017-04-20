@@ -22,7 +22,7 @@ abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any>(a
     }
 
     @Suppress("UNUSED_PARAMETER")
-    inline infix fun <reified R : Any> isInstance(bar: InstanceMatcher<R>): S {
+    inline infix fun <reified R : Any> isInstance(bar: InstanceMatcher<out R>): S {
         assertion.isInstanceOf(R::class.java)
         return myself
     }
