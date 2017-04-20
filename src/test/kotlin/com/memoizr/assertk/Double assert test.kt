@@ -10,7 +10,7 @@ class `Double assert test` {
     lateinit var mockAssertion: AbstractDoubleAssert<*>
     @Suppress("UNCHECKED_CAST")
     val _expect = object : AssertionHook {
-        override fun that(subjectUnderTest: Double?): DoubleAssert {
+            override fun that(subjectUnderTest: Double?): DoubleAssert {
             val spy: AbstractDoubleAssert<*> = spy(Assertions.assertThat(subjectUnderTest))
             mockAssertion = spy
             return DoubleAssert(subjectUnderTest, mockAssertion)
@@ -29,80 +29,119 @@ class `Double assert test` {
     private val negativeOne = -one
 
     @Test
+    fun isEqualTo() {
+        three isEqualTo three andCanBe chained
+    }
+
+    @Test
+    fun isNotEqualTo() {
+        three isNotEqualTo four andCanBe chained
+    }
+
+    @Test
+    fun isInstance() {
+        three isInstance of<Double>() andCanBe chained
+    }
+
+    @Test
+    fun is_() {
+        three is_ notNull andCanBe chained
+        three is_ notNegative andCanBe chained
+    }
+
+    @Test
+    fun describedAs() {
+        three describedAs "foo" andCanBe chained
+    }
+
+    @Test
     fun isLessThan() {
         _expect that three isLessThan four andCanBe chained
+        three isLessThan four andCanBe chained
         verify.isLessThan(four)
     }
 
     @Test
     fun isLessThanOrEqualTo() {
         _expect that four isLessThanOrEqualTo four andCanBe chained
+        four isLessThanOrEqualTo four andCanBe chained
         verify.isLessThanOrEqualTo(four)
     }
 
     @Test
     fun isGreaterThan() {
         _expect that five isGreaterThan four andCanBe chained
+        five isGreaterThan four andCanBe chained
         verify.isGreaterThan(four)
     }
 
     @Test
     fun isGreaterThanOrEqualTo() {
         _expect that four isGreaterThanOrEqualTo four andCanBe chained
+        four isGreaterThanOrEqualTo four andCanBe chained
         verify.isGreaterThanOrEqualTo(four)
     }
 
     @Test
     fun isBetween() {
         _expect that four isBetween (three..five) andCanBe chained
+        four isBetween (three..five) andCanBe chained
         verify.isBetween(three, five)
     }
 
     @Test
     fun isStrictlyBetween() {
         _expect that four isStrictlyBetween (three..five) andCanBe chained
+        four isStrictlyBetween (three..five) andCanBe chained
         verify.isStrictlyBetween(three, five)
     }
 
     @Test
     fun `isCloseTo within`() {
         _expect that four isCloseTo three withinOffset one andCanBe chained
+        four isCloseTo three withinOffset one andCanBe chained
         verify.isCloseTo(three, Assertions.within(one))
     }
 
     @Test
     fun `isCloseTo percentage int`() {
         _expect that three isCloseTo four withinPercentage 25 andCanBe chained
+        three isCloseTo four withinPercentage 25 andCanBe chained
         verify.isCloseTo(four, Assertions.withinPercentage(25))
     }
 
     @Test
     fun `isCloseTo percentage double`() {
         _expect that three isCloseTo four withinPercentage 25.3 andCanBe chained
+        three isCloseTo four withinPercentage 25.3 andCanBe chained
         verify.isCloseTo(four, Assertions.withinPercentage(25.3))
     }
 
     @Test
     fun `isCloseTo percentage float`() {
         _expect that three isCloseTo four withinPercentage 25f andCanBe chained
+        three isCloseTo four withinPercentage 25f andCanBe chained
         verify.isCloseTo(four, Assertions.withinPercentage(25))
     }
 
     @Test
     fun isZero() {
         _expect that 0.0 _is zero andCanBe chained
+        0.0 _is zero andCanBe chained
         verify.isZero()
     }
 
     @Test
     fun isNotZero() {
         _expect that one _is notZero andCanBe chained
+        one _is notZero andCanBe chained
         verify.isNotZero()
     }
 
     @Test
     fun isPositive() {
         _expect that one _is positive andCanBe chained
+        one _is positive andCanBe chained
         verify.isPositive()
     }
 
@@ -110,18 +149,21 @@ class `Double assert test` {
     @Test
     fun isNotPositive() {
         _expect that negativeOne _is notPositive andCanBe chained
+        negativeOne _is notPositive andCanBe chained
         verify.isNotPositive()
     }
 
     @Test
     fun isNegative() {
         _expect that negativeOne _is negative andCanBe chained
+        negativeOne _is negative andCanBe chained
         verify.isNegative()
     }
 
     @Test
     fun isNotNegative() {
         _expect that one _is notNegative andCanBe chained
+        one _is notNegative andCanBe chained
         verify.isNotNegative()
     }
 

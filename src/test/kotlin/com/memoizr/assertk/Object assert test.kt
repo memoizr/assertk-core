@@ -6,6 +6,10 @@ import org.assertj.core.api.AbstractObjectAssert
 import org.assertj.core.api.Assertions
 import org.junit.Test
 
+interface FooBars
+object A : FooBars
+object B
+
 class `Object assert test` {
     val nullObject: Any? = null
 
@@ -17,6 +21,32 @@ class `Object assert test` {
             mockAssertion = spy as AbstractObjectAssert<*, Any>
             return ObjectAssert(subjectUnderTest, mockAssertion) as ObjectAssert<A>
         }
+    }
+
+    @Test
+    fun isEqualTo() {
+        Unit isEqualTo Unit
+    }
+
+    @Test
+    fun isNotEqualTo() {
+        A isNotEqualTo B
+    }
+
+    @Test
+    fun isInstance() {
+        expect that (A as FooBars) isInstance of<A>()
+        (A as FooBars) isInstance of<A>()
+    }
+
+    @Test
+    fun is_() {
+        A is_ notNull
+    }
+
+    @Test
+    fun describedAs() {
+        A describedAs "foo"
     }
 
     @Test
