@@ -16,10 +16,10 @@ class `Object assert test` {
     lateinit var mockAssertion: AbstractObjectAssert<*, Any>
     @Suppress("UNCHECKED_CAST")
     val _expect = object : AssertionHook {
-        override fun <A: Any> that(subjectUnderTest: A?): ObjectAssert<A> {
+        override fun <A: Any?> that(subjectUnderTest: A): ObjectAssert<A> {
             val spy: AbstractObjectAssert<*, A?>? = spy(Assertions.assertThat(subjectUnderTest))
             mockAssertion = spy as AbstractObjectAssert<*, Any>
-            return ObjectAssert(subjectUnderTest, mockAssertion) as ObjectAssert<A>
+            return ObjectAssert(subjectUnderTest, mockAssertion as AbstractObjectAssert<*, A>)
         }
     }
 
@@ -80,6 +80,14 @@ class `Object assert test` {
             _expect that nullObject _is notNull
         }
         verify(mockAssertion).isNotNull()
+    }
+
+    val nullableString: Any? = "notnull"
+    val nullableExpect: Any? = "notnull"
+
+    @Test
+    fun `supports nullable objects`() {
+        _expect that nullableString isEqualTo nullableExpect
     }
 
     @Test

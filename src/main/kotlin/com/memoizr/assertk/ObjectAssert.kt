@@ -10,7 +10,7 @@ infix fun <A: Any> A.describedAs(description: String): ObjectAssert<A> = expect 
 inline infix fun <reified A: Any> A.isInstance(expected: AbstractAssertBuilder.InstanceMatcher<out A>): ObjectAssert<A> =
         expect.that(this).isInstance(expected)
 
-class ObjectAssert<A : Any> internal constructor(
+class ObjectAssert<A : Any?> internal constructor(
         actual: A?,
         override val assertion: AbstractObjectAssert<*, A> = Assertions.assertThat(actual)) :
         AbstractAssertBuilder<ObjectAssert<A>, A>(actual, ObjectAssert::class.java)
