@@ -1,9 +1,9 @@
 package com.memoizr.assertk
 
-import com.nhaarman.mockito_kotlin.spy
+import com.nhaarman.mockitokotlin2.spy
 import org.assertj.core.api.AbstractFloatAssert
 import org.assertj.core.api.Assertions
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 
 class `Float assert test` {

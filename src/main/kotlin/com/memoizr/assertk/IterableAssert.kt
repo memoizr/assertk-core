@@ -86,8 +86,8 @@ class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> internal constr
         return myself
     }
 
-    infix fun endsWith(expected: ACTUAL): IterableAssert<ELEMENT, ACTUAL> {
-        assertion.endsWith(*spread(expected))
+    infix fun endsWith(expected: Iterable<ELEMENT>): IterableAssert<ELEMENT, ACTUAL> {
+        assertion.endsWith(spread(expected))
         return myself
     }
 

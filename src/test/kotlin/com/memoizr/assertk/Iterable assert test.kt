@@ -1,19 +1,25 @@
 package com.memoizr.assertk
 
-import com.nhaarman.mockito_kotlin.spy
-import com.nhaarman.mockito_kotlin.verify
+
+import com.nhaarman.mockitokotlin2.capture
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.verifyZeroInteractions
+import io.mockk.slot
+import io.mockk.spyk
+import io.mockk.verify
 import org.assertj.core.api.AbstractIterableAssert
-import org.assertj.core.api.Assertions
-import org.junit.Test
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Test
 
 class `Iterable assert test` {
-    lateinit var mockAssertion: AbstractIterableAssert<*, in Iterable<Any>, in Any, *>
+    lateinit var mockAssertion: AbstractIterableAssert<*, in Iterable<Int>, in Int, *>
 
-    @Suppress("CAST_NEVER_SUCCEEDS")
-    val _expect = object : AssertionHook {
+    @Suppress("CAST_NEVER_SUCCEEDS", "UNCHECKED_CAST")
+    var _expect = object : AssertionHook {
         override fun <ELEMENT : Any?> that(subjectUnderTest: Iterable<ELEMENT>?): IterableAssert<ELEMENT, Iterable<ELEMENT>> {
-            val spy = spy(Assertions.assertThat(subjectUnderTest))
-            mockAssertion = spy as AbstractIterableAssert<*, Iterable<Any>, Any, *>
+            val spy = spyk(assertThat(subjectUnderTest))
+            mockAssertion = spy as AbstractIterableAssert<*, Iterable<Int>, Int, *>
             return IterableAssert(subjectUnderTest, mockAssertion as AbstractIterableAssert<*, Iterable<ELEMENT>, ELEMENT, *>)
         }
     }
@@ -23,124 +29,139 @@ class `Iterable assert test` {
 
     val emptyList = emptyList<Any>()
 
+    @Suppress("UNCHECKED_CAST")
+    private fun <T> spread(expected: Iterable<T>): Array<T> = expected.toList().toTypedArray<Any?>() as Array<T>
+
     @Test
     fun isEmpty() {
         _expect that emptyList _is empty canBe chained
-        verify(mockAssertion).isEmpty()
+        verify { mockAssertion.isEmpty() }
     }
 
     @Test
     fun isNullOrEmpty() {
         _expect that emptyList _is nullOrEmpty canBe chained
-        verify(mockAssertion).isNullOrEmpty()
+        verify { mockAssertion.isNullOrEmpty() }
     }
 
     @Test
     fun isNotEmpty() {
         _expect that listOf(Unit) _is notEmpty canBe chained
-        verify(mockAssertion).isNotEmpty()
+        verify { mockAssertion.isNotEmpty() }
     }
 
     @Test
     fun hasSize() {
         _expect that listOf(Unit) hasSize 1
-        verify(mockAssertion).hasSize(1)
+        verify { mockAssertion.hasSize(1) }
     }
 
     @Test
     fun hasSameSizeAs() {
         _expect that listOf(Unit) hasSameSizeAs listOf(Unit) canBe chained
-        verify(mockAssertion).hasSameSizeAs(listOf(Unit))
+        verify { mockAssertion.hasSameSizeAs(listOf(Unit)) }
     }
 
     @Test
     fun contains() {
         _expect that listOf(1, 2, 3, 4) contains listOf(1, 2) canBe chained
-        verify(mockAssertion).contains(1, 2)
+        verify { mockAssertion.contains(1, 2) }
     }
 
     @Test
     fun containsOnly() {
         _expect that listOf(1, 2) containsOnly listOf(1, 2) canBe chained
-        verify(mockAssertion).containsOnly(1, 2)
+        verify { mockAssertion.containsOnly(1, 2) }
     }
 
     @Test
     fun containsOnlyOnce() {
         _expect that listOf(1, 2) containsOnlyOnce listOf(1, 2) canBe chained
-        verify(mockAssertion).containsOnlyOnce(1, 2)
+        verify { mockAssertion.containsOnlyOnce(1, 2) }
     }
 
     @Test
     fun containsExactlyInAnyOrder() {
         _expect that listOf(1, 2) containsExactlyInAnyOrder listOf(2, 1) canBe chained
-        verify(mockAssertion).containsExactlyInAnyOrder(2, 1)
+        verify { mockAssertion.containsExactlyInAnyOrder(2, 1) }
     }
 
     @Test
     fun isSubsetOf() {
         _expect that listOf(1, 2) isSubsetOf listOf(2, 1, 3) canBe chained
-        verify(mockAssertion).isSubsetOf(2, 1, 3)
+        verify { mockAssertion.isSubsetOf(2, 1, 3) }
     }
 
     @Test
     fun containsSequence() {
         _expect that listOf(1, 2, 3, 4) containsSequence listOf(2, 3) canBe chained
-        verify(mockAssertion).containsSequence(2, 3)
+        verify { mockAssertion.containsSequence(2, 3) }
     }
 
     @Test
     fun containsSubsequence() {
         _expect that listOf(1, 2, 3, 4) containsSubsequence listOf(2, 4) canBe chained
-        verify(mockAssertion).containsSubsequence(2, 4)
+        verify { mockAssertion.containsSubsequence(2, 4) }
     }
 
     @Test
     fun doesNotContainAnyElementsOf() {
         _expect that listOf(1, 2, 3, 4) doesNotContainAnyElementsOf listOf(6, 7) canBe chained
-        verify(mockAssertion).doesNotContainAnyElementsOf(listOf(6, 7))
+        verify { mockAssertion.doesNotContainAnyElementsOf(listOf(6, 7)) }
     }
 
     @Test
     fun doesNotHaveDuplicates() {
         _expect that listOf(1, 2, 3, 4) doesNotHave duplicates canBe chained
-        verify(mockAssertion).doesNotHaveDuplicates()
+        verify { mockAssertion.doesNotHaveDuplicates() }
     }
 
     @Test
     fun `startsWith list`() {
         _expect that listOf(1, 2, 3, 4) startsWith listOf(1, 2) canBe chained
-        verify(mockAssertion).startsWith(1, 2)
+        verify { mockAssertion.startsWith(1, 2) }
     }
 
     @Test
     fun `startsWith single`() {
         _expect that listOf(1, 2, 3, 4) startsWith 1 canBe chained
-        verify(mockAssertion).startsWith(1)
+        verify { mockAssertion.startsWith(1) }
     }
 
     @Test
     fun `endsWith list`() {
         _expect that listOf(1, 2, 3, 4) endsWith listOf(3, 4) canBe chained
-        verify(mockAssertion).endsWith(3, 4)
+        verify { mockAssertion.endsWith(arrayOf(3, 4)) }
+    }
+
+    @Test
+    fun `endsWith list of size 1`() {
+        _expect that listOf(1, 2, 3, 4) endsWith listOf(4) canBe chained
+        verify { mockAssertion.endsWith(arrayOf(4)) }
+    }
+
+    @Test
+    fun `endsWith an empty list`() {
+        _expect that listOf(1, 2, 3, 4) endsWith emptyList() canBe chained
+        verify { mockAssertion.endsWith(emptyArray()) }
     }
 
     @Test
     fun `endsWith single`() {
         _expect that listOf(1, 2, 3, 4) endsWith 4 canBe chained
-        verify(mockAssertion).endsWith(4)
+        verify { mockAssertion.endsWith(4) }
     }
 
     @Test
     fun containsNull() {
         _expect that listOf(1, 2, 3, 4, null) contains null canBe chained
-        verify(mockAssertion).containsNull()
+        verify { mockAssertion.containsNull() }
     }
 
     @Test
     fun containsOnlyNotNull() {
         _expect that listOf(1, 2, 3, 4) contains onlyNotNull canBe chained
-        verify(mockAssertion).doesNotContainNull()
+        verify { mockAssertion.doesNotContainNull() }
     }
 
     @Test

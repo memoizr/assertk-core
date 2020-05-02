@@ -1,11 +1,12 @@
 package com.memoizr.assertk
 
-import com.nhaarman.mockito_kotlin.never
-import com.nhaarman.mockito_kotlin.spy
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.spy
+import com.nhaarman.mockitokotlin2.verify
 import org.assertj.core.api.AbstractBooleanAssert
 import org.assertj.core.api.Assertions
-import org.junit.Test
+import org.junit.jupiter.api.Test
+
 
 class `BooleanAssert test` {
     lateinit var mockAssertion: AbstractBooleanAssert<*>

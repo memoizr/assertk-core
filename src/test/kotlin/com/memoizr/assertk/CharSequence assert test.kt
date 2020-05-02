@@ -1,10 +1,10 @@
 package com.memoizr.assertk
 
-import com.nhaarman.mockito_kotlin.spy
-import com.nhaarman.mockito_kotlin.verify
 import org.assertj.core.api.AbstractCharSequenceAssert
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import com.nhaarman.mockitokotlin2.spy
+import com.nhaarman.mockitokotlin2.verify
 import java.util.regex.Pattern
 
 class `CharSequence assert test` {
@@ -92,8 +92,8 @@ class `CharSequence assert test` {
 
     @Test
     fun `containsSequence CharSequence`() {
-        _expect that "foo bar" containsSequence listOf("oo", "ar") canBe chained
-        verify(mockAssertion).containsSequence(listOf("oo", "ar"))
+        _expect that "foo bar" containsSequence listOf("foo", " ", "bar") canBe chained
+        verify(mockAssertion).containsSequence(listOf("foo", " ", "bar"))
     }
 
     @Test
