@@ -1,10 +1,10 @@
 package com.memoizr.assertk
 
-import com.nhaarman.mockito_kotlin.spy
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockitokotlin2.spy
+import com.nhaarman.mockitokotlin2.verify
 import org.assertj.core.api.AbstractObjectAssert
 import org.assertj.core.api.Assertions
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 interface FooBars
 object A : FooBars

@@ -1,25 +1,19 @@
-buildscript {
-    ext.KOTLIN_VERSION="1.1.0-rc-91"
-    ext.kotlin_version = '1.0.3'
-
-    repositories {
-        jcenter()
-        maven { url "https://dl.bintray.com/kotlin/kotlin-eap-1.1" }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
-    }
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.3.72"
+    id 'jacoco'
+//    id 'maven-publish'
+//    id 'java-library-distribution'
 }
 
 group 'com.memoizr'
 version '0.1'
 
-apply plugin: 'kotlin'
-apply plugin: 'jacoco'
-
 repositories {
-    maven { url "https://dl.bintray.com/kotlin/kotlin-eap-1.1" }
-    jcenter()
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
 }
 
 jacocoTestReport {
@@ -28,11 +22,13 @@ jacocoTestReport {
     }
 }
 
+
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
-    compile group: 'org.assertj', name: 'assertj-core', version: '2.5.0'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile "org.mockito:mockito-core:1.10.19"
-    testCompile "com.nhaarman:mockito-kotlin:0.2.0"
-    testRuntime 'org.slf4j:slf4j-nop:1.7.12'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72'
+    implementation 'org.assertj:assertj-core:3.15.0'
+    testImplementation("io.mockk:mockk:1.9.3")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+    testRuntimeOnly 'org.slf4j:slf4j-nop:1.7.12'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
 }
