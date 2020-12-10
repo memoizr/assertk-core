@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.verify
 import org.assertj.core.api.AbstractBooleanAssert
 import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 
 class `BooleanAssert test` {

@@ -7,9 +7,9 @@ abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any?>(
     class InstanceMatcher<R>
 
     @Suppress("UNCHECKED_CAST", "LeakingThis")
-    protected val myself: S = selfType.cast(this) as S
+    val myself: S = selfType.cast(this) as S
 
-    open protected val assertion: AbstractAssert<*, out A?> = Assertions.assertThat(actual)
+    open val assertion: AbstractAssert<*, out A?> = Assertions.assertThat(actual)
 
     infix fun isEqualTo(other: A): S {
         assertion.isEqualTo(other)
