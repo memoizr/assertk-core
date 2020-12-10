@@ -13,3 +13,7 @@ class BooleanAssert internal constructor(
         return this
     }
 }
+
+infix fun Boolean._is(other: Boolean): BooleanAssert {
+    return expect that this _is other
+}

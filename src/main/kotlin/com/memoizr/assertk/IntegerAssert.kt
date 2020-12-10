@@ -66,3 +66,27 @@ class IntegerAssert internal constructor(
         }
     }
 }
+
+infix fun Int.isLessThan(expected: Int): IntegerAssert =
+        expect that this isLessThan expected
+
+infix fun Int.isLessThanOrEqualTo(expected: Int): IntegerAssert =
+        expect that this isLessThanOrEqualTo expected
+
+infix fun Int.isGreaterThan(expected: Int): IntegerAssert =
+        expect that this isGreaterThan expected
+
+infix fun Int.isGreaterThanOrEqualTo(expected: Int): IntegerAssert =
+        expect that this isGreaterThanOrEqualTo expected
+
+infix fun Int.isBetween(expected: IntRange): IntegerAssert =
+        expect that this isBetween expected
+
+infix fun Int.isStrictlyBetween(expected: IntRange): IntegerAssert =
+        expect that this isStrictlyBetween expected
+
+infix fun Int.isCloseTo(expected: Int): IntegerAssert.Close =
+        expect that this isCloseTo expected
+
+infix fun Int._is(expected: NumberSelector): IntegerAssert =
+        expect that this _is expected

@@ -145,4 +145,9 @@ class `Object assert test` {
             }
         }
     }
+
+    data class TestObject(val integer: Int,
+            val boolean: Boolean,
+            val any: Any
+    )
 }

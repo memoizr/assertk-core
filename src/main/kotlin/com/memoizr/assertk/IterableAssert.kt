@@ -101,3 +101,55 @@ class IterableAssert<ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> internal constr
         return myself
     }
 }
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL._is(selector: SequenceSelector)=
+        expect that this _is selector
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.hasSize(size: Int) =
+        expect that this hasSize size
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.hasSameSizeAs(expected: ACTUAL) =
+        expect that this hasSameSizeAs expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.contains(expected: ACTUAL) =
+        expect that this contains expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.containsOnly(expected: ACTUAL) =
+        expect that this  containsOnly expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.containsOnlyOnce(expected: ACTUAL) =
+        expect that this containsOnlyOnce expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.containsExactlyInAnyOrder(expected: ACTUAL) =
+        expect that this containsExactlyInAnyOrder expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.isSubsetOf(expected: ACTUAL) =
+        expect that this isSubsetOf expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.containsSequence(expected: ACTUAL) =
+        expect that this containsSequence expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.containsSubsequence(expected: ACTUAL) =
+        expect that this containsSubsequence expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.doesNotContainAnyElementsOf(expected: ACTUAL) =
+        expect that this doesNotContainAnyElementsOf expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.doesNotHave(duplicates: duplicates) =
+        expect that this doesNotHave duplicates
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.startsWith(expected: ACTUAL) =
+        expect that this startsWith expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.startsWith(firstElement: ELEMENT) =
+        expect that this startsWith firstElement
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.endsWith(expected: Iterable<ELEMENT>) =
+        expect that this endsWith expected
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.endsWith(lastElement: ELEMENT) =
+        expect that this endsWith lastElement
+
+infix fun <ELEMENT : Any?, ACTUAL : Iterable<ELEMENT>> ACTUAL.contains(onlyNotNull: onlyNotNull?) =
+        expect that this contains onlyNotNull
+

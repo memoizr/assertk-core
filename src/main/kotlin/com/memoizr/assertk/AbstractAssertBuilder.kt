@@ -3,7 +3,7 @@ package com.memoizr.assertk
 import org.assertj.core.api.AbstractAssert
 import org.assertj.core.api.Assertions
 
-abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any?>(actual: A?, selfType: Class<*>) {
+abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any?>(private val actual: A?, selfType: Class<*>) {
     class InstanceMatcher<R>
 
     @Suppress("UNCHECKED_CAST", "LeakingThis")
@@ -46,8 +46,8 @@ abstract class AbstractAssertBuilder<S : AbstractAssertBuilder<S, A>, A : Any?>(
     }
 
     @Suppress("UNCHECKED_CAST")
-    infix fun isSuchThat(assertionBlock: S.(S) -> Unit): S {
-        (this as S).assertionBlock(this)
+    infix fun isSuchThat(assertionBlock: A.(S) -> Unit): S {
+        actual?.assertionBlock(this as S)
         return myself
     }
 }

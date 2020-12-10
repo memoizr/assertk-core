@@ -67,3 +67,26 @@ class LongAssert internal constructor(
     }
 }
 
+infix fun Long.isLessThan(expected: Long): LongAssert =
+        expect that this isLessThan expected
+
+infix fun Long.isLessThanOrEqualTo(expected: Long): LongAssert =
+        expect that this isLessThanOrEqualTo expected
+
+infix fun Long.isGreaterThan(expected: Long): LongAssert =
+        expect that this isGreaterThan expected
+
+infix fun Long.isGreaterThanOrEqualTo(expected: Long): LongAssert =
+        expect that this isGreaterThanOrEqualTo expected
+
+infix fun Long.isBetween(expected: ClosedRange<Long>): LongAssert =
+        expect that this isBetween expected
+
+infix fun Long.isStrictlyBetween(expected: ClosedRange<Long>): LongAssert =
+        expect that this isStrictlyBetween expected
+
+infix fun Long.isCloseTo(expected: Long): LongAssert.Close =
+        expect that this isCloseTo expected
+
+infix fun Long._is(expected: NumberSelector): LongAssert =
+        expect that this _is expected

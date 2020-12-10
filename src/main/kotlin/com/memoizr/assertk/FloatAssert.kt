@@ -66,3 +66,27 @@ class FloatAssert internal constructor(
         }
     }
 }
+
+infix fun Float.isLessThan(expected: Float): FloatAssert =
+        expect that this isLessThan expected
+
+infix fun Float.isLessThanOrEqualTo(expected: Float): FloatAssert =
+    expect that this isLessThanOrEqualTo expected
+
+infix fun Float.isGreaterThan(expected: Float): FloatAssert =
+        expect that this isGreaterThan expected
+
+infix fun Float.isGreaterThanOrEqualTo(expected: Float): FloatAssert =
+        expect that this isGreaterThanOrEqualTo expected
+
+infix fun Float.isBetween(expected: ClosedRange<Float>): FloatAssert =
+        expect that this isBetween expected
+
+infix fun Float.isStrictlyBetween(expected: ClosedRange<Float>): FloatAssert =
+        expect that this isStrictlyBetween expected
+
+infix fun Float.isCloseTo(expected: Float): FloatAssert.Close =
+        expect that this isCloseTo expected
+
+infix fun Float._is(expected: NumberSelector): FloatAssert =
+        expect that this _is expected

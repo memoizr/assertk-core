@@ -138,3 +138,78 @@ class CharSequenceAssert internal constructor(
         return this
     }
 }
+
+infix fun CharSequence._is(assertionTest: SequenceSelector): CharSequenceAssert =
+        expect that this _is assertionTest
+
+infix fun CharSequence.hasSize(expectedSize: Int): CharSequenceAssert =
+        expect that this hasSize expectedSize
+
+infix fun CharSequence.hasLineCount(expectedLineCount: Int): CharSequenceAssert =
+        expect that this hasLineCount expectedLineCount
+
+infix fun CharSequence.isEqualToIgnoringCase(expected: CharSequence): CharSequenceAssert =
+        expect that this isEqualToIgnoringCase expected
+
+infix fun CharSequence.isNotEqualToIgnoringCase(expected: CharSequence): CharSequenceAssert =
+        expect that this isNotEqualToIgnoringCase expected
+
+infix fun CharSequence.contains(onlyDigits: onlyDigits): CharSequenceAssert =
+        expect that this contains onlyDigits
+
+infix fun CharSequence.contains(expected: CharSequence): CharSequenceAssert =
+        expect that this contains expected
+
+infix fun CharSequence.containsOnlyOnce(expected: CharSequence): CharSequenceAssert =
+        expect that this containsOnlyOnce expected
+
+infix fun CharSequence.contains(expected: Iterable<CharSequence>): CharSequenceAssert =
+        expect that this contains expected
+
+infix fun CharSequence.containsSequence(expected: Iterable<CharSequence>): CharSequenceAssert =
+        expect that this containsSequence expected
+
+infix fun CharSequence.containsIgnoringCase(expected: CharSequence): CharSequenceAssert =
+        expect that this containsIgnoringCase expected
+
+infix fun CharSequence.doesNotContain(expected: CharSequence): CharSequenceAssert =
+        expect that this doesNotContain expected
+
+infix fun CharSequence.startsWith(expected: CharSequence): CharSequenceAssert =
+        expect that this startsWith expected
+
+infix fun CharSequence.doesNotStartWith(expected: CharSequence): CharSequenceAssert =
+        expect that this doesNotStartWith expected
+
+infix fun CharSequence.endsWith(expected: CharSequence): CharSequenceAssert =
+        expect that this endsWith expected
+
+infix fun CharSequence.doesNotEndWith(expected: CharSequence): CharSequenceAssert =
+        expect that this doesNotEndWith expected
+
+infix fun CharSequence.matches(expected: Pattern): CharSequenceAssert =
+        expect that this matches expected
+
+infix fun CharSequence.doesNotMatch(expected: Pattern): CharSequenceAssert =
+        expect that this doesNotMatch expected
+
+infix fun CharSequence.matches(expected: CharSequence): CharSequenceAssert =
+        expect that this matches expected
+
+infix fun CharSequence.doesNotMatch(expected: CharSequence): CharSequenceAssert =
+        expect that this doesNotMatch expected
+
+infix fun CharSequence.isEqualToIgnoringWhitespace(expected: CharSequence): CharSequenceAssert =
+        expect that this isEqualToIgnoringWhitespace expected
+
+infix fun CharSequence.isNotEqualToIgnoringWhitespace(expected: CharSequence): CharSequenceAssert =
+        expect that this isNotEqualToIgnoringWhitespace  expected
+
+infix fun CharSequence.isSubstringOf(expected: CharSequence): CharSequenceAssert =
+        expect that this isSubstringOf expected
+
+infix fun CharSequence.containsPattern(pattern: CharSequence): CharSequenceAssert =
+        expect that this containsPattern pattern
+
+infix fun CharSequence.containsPattern(pattern: Pattern): CharSequenceAssert =
+        expect that this containsPattern pattern

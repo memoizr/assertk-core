@@ -27,6 +27,8 @@ class `BooleanAssert test` {
         _expect that true _is true andCanBe chained
         verify(mockAssertion).isTrue()
         verify(mockAssertion, never()).isFalse()
+
+        true _is true andCanBe chained
     }
 
     @Test
@@ -34,5 +36,7 @@ class `BooleanAssert test` {
         _expect that false _is false andCanBe chained
         verify(mockAssertion).isFalse()
         verify(mockAssertion, never()).isTrue()
+
+        false _is false andCanBe chained
     }
 }
